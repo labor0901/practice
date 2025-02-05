@@ -1,37 +1,51 @@
 #include <stdio.h>
 int main()
 {
-
-    int w,h,n,l,d,x,y,i,j,t;
-    scanf("%d%d%d",&w,&h,&n);
-    w++;
-    h++;
-    int a[w][h]={};
-    for(i=0;i<n;i++)
+    int i,j,x,y,t =0;
+    int a[11][11]={};
+    int n=11;
+    for(i=1;i<=11;i++)
     {
-        scanf("%d%d%d%d",&l,&d,&y,&x);
-        if(d==1)
+        for(j=1;j<=11;j++)
         {
-            for(j=0;j<l;j++)
-            {
-                a[x][y]=1;
-                y++;
-            }
+            scanf("%d",&a[j][i]);
         }
-        else
+    }
+    for(i=1;i<=11;i++)
+    {
+        for(j=1;j<=11;j++)
         {
-            for(j=0;j<l;j++)
+            if(a[j][i]==0) 
             {
-                a[x][y]=1;
-                x++;
+                if(x==0) 
+                {
+                    if(y==0)
+                    {
+                        x=j;
+                        y=i;
+                    }
+                }
+                if(x==j) 
+                {
+                    if(y==i)
+                    {
+                        a[j][i]=9;
+                    }
+                }
+                if(a[x][i]==1)
+                {
+                    t=1;
+                    y++;
+                }
+                if(t==1) y++;
+                else x++;
             }
         }
     }
-    for(i=1;i<h;i++)
+    for(i=1;i<=11;i++)
     {
-        for(j=1;j<w;j++)
+        for(j=1;j<=11;j++)
         {
-            if(a[j][i]==NULL) a[j][i]=0;
             printf("%d ",a[j][i]);
         }
         printf("\n");
